@@ -7,7 +7,7 @@ import AppText from "./AppText";
 function Card({ title, subtitle, image }) {
   return (
     <View style={styles.card}>
-      <Image style={styles.image} source={require(image)} />
+      <Image style={styles.image} source={image} />
       <View style={styles.detailsContainer}>
         <AppText style={styles.title}>{title}</AppText>
         <AppText style={styles.subTitle}>{subtitle}</AppText>
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     color: colors.secondary,
-    fontSize: "bold",
+    fontWeight: "bold",
   },
 });
 
