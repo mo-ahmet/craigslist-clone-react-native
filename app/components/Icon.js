@@ -11,8 +11,8 @@ function Icon({
   return (
     <View
       style={{
-        height: size,
         width: size,
+        height: size,
         borderRadius: size / 2,
         backgroundColor,
         justifyContent: "center",
