@@ -1,5 +1,11 @@
-import React from "react";
-import { View, StyleSheet, TouchableWithoutFeedback } from "react-native";
+import React, { useEffect } from "react";
+import {
+  View,
+  StyleSheet,
+  Image,
+  TouchableWithoutFeedback,
+  Alert,
+} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 
@@ -16,7 +22,7 @@ function ImageInput({ imageUri, onChangeImage }) {
   };
 
   const handlePress = () => {
-    if (imageUri) selectImage;
+    if (!imageUri) selectImage();
     else
       Alert.alert("Delete", "Are you sure you want to delete this image?", [
         { text: "Yes", onPress: () => onChangeImage(null) },
@@ -41,17 +47,12 @@ function ImageInput({ imageUri, onChangeImage }) {
       <View style={styles.container}>
         {!imageUri && (
           <MaterialCommunityIcons
+            color={colors.medium}
             name="camera"
             size={40}
-            color={colors.medium}
           />
         )}
-        {imageUri && (
-          <MaterialCommunityIcons
-            source={{ uri: imageUri }}
-            style={styles.image}
-          />
-        )}
+        {imageUri && <Image source={{ uri: imageUri }} style={styles.image} />}
       </View>
     </TouchableWithoutFeedback>
   );
@@ -59,17 +60,18 @@ function ImageInput({ imageUri, onChangeImage }) {
 
 const styles = StyleSheet.create({
   container: {
+    alignItems: "center",
     backgroundColor: colors.light,
     borderRadius: 15,
-    justifyContent: "center",
-    alignItems: "center",
     height: 100,
+    justifyContent: "center",
+    marginVertical: 10,
     overflow: "hidden",
     width: 100,
   },
   image: {
-    width: "100%",
     height: "100%",
+    width: "100%",
   },
 });
 
